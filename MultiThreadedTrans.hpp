@@ -17,6 +17,8 @@ class MultiThreadedTrans {
         std::ostream &err_log;
         void write_log(std::string msg);
         void write_err(std::string err);
+        bool execute_concurrent();
+        bool execute_sequential();
     public: 
         /** 
          * @brief Constructor for a multi-threaded CZI -> tiff converter 

@@ -25,9 +25,13 @@ void MultiThreadedTrans::write_err(std::string err) {
 }
 
 bool MultiThreadedTrans::configure(size_t threads, size_t max_batch_size_in_tiles) {
-    if (threads < 2) {
-        this->write_err("Cannot execute run with less than 2 threads");
+    if (threads < 1) {
+        this->write_err("Cannot execute run with less than 1 thread");
         return false;
+    }
+    else if (threads == 1) {
+        this->write_log("Successfully configured sequential run using 1 thread");
+        return true;
     }
     this->no_threads = threads;
     this->max_batch_size = max_batch_size_in_tiles;
@@ -37,6 +41,14 @@ bool MultiThreadedTrans::configure(size_t threads, size_t max_batch_size_in_tile
                         std::to_string(max_batch_size_in_tiles) + 
                         ".");
     return true;
+}
+
+bool MultiThreadedTrans::execute_concurrent() {
+
+}
+
+bool MultiThreadedTrans::execute_sequential() {
+
 }
 
 bool MultiThreadedTrans::execute() {
