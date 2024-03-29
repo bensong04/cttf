@@ -13,12 +13,14 @@ class MultiThreadedTrans {
         std::shared_ptr<libCZI::ICZIReader> internal_reader;
         size_t no_threads;
         size_t max_batch_size;
+        std::string out_fname;
         std::ostream &prog_log;
         std::ostream &err_log;
         void write_log(std::string msg);
         void write_err(std::string err);
         bool execute_concurrent();
         bool execute_sequential();
+        static std::string w_to_cstring(const wchar_t *w);
     public: 
         /** 
          * @brief Constructor for a multi-threaded CZI -> tiff converter 
